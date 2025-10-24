@@ -107,3 +107,9 @@ ul.contact a:hover {
   text-decoration: underline; /* Or remove this line if you don’t want hover underline either */
   color: #000; /* Optional hover color */
 }
+
+.paper-item img {
+  width: 200px; /* Adjust this value */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures image fills the space nicely */
+}
