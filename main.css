@@ -113,3 +113,13 @@ ul.contact a:hover {
   height: auto; /* Maintains aspect ratio */
   object-fit: cover; /* Ensures image fills the space nicely */
 }
+
+.contact {
+    list-style: none;      /* removes bullets */
+    padding: 0;            /* removes default spacing */
+    margin: 0;
+
+    display: flex;         /* makes items horizontal */
+    gap: 12px;             /* spacing between icons */
+    align-items: center;   /* vertical alignment */
+}
