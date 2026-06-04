@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cristian Victoria — Curiosity First</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F4F2;
+      --ink: #222222;
+      --ink-60: rgba(34,34,34,0.6);
+      --ink-35: rgba(34,34,34,0.35);
+      --ink-12: rgba(34,34,34,0.12);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'Instrument Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Grain overlay ── */
+    #grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      width: 100%; height: 100%;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 30px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: multiply;
+      opacity: 0;
+      animation: slideDown 0.5s cubic-bezier(0.16,1,0.3,1) 1.6s forwards;
+    }
+
+    .nav-wordmark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 1px;
+      background: var(--ink);
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 52px 100px;
+      position: relative;
+      text-align: center;
+    }
+
+    .hero-logo-wrap {
+      opacity: 0;
+      transform: translateY(20px) scale(0.94);
+      animation: heroLogo 1s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
+      margin-bottom: 44px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .hero-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(26px, 4.2vw, 56px);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeRise 0.75s cubic-bezier(0.16,1,0.3,1) 0.85s forwards;
+      margin-bottom: 22px;
+    }
+
+    .hero-tagline {
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeRise 0.65s cubic-bezier(0.16,1,0.3,1) 1.1s forwards;
+      margin-bottom: 10px;
+    }
+
+    .hero-location {
+      font-size: 10.5px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeRise 0.6s cubic-bezier(0.16,1,0.3,1) 1.25s forwards;
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero-scroll-cue {
+      position: absolute;
+      bottom: 44px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeRise 0.5s ease 1.8s forwards;
+    }
+
+    .scroll-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+    }
+
+    .scroll-track {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--ink-35) 0%, transparent 100%);
+      transform-origin: top;
+      animation: scrollTrack 2.4s ease-in-out infinite 2.2s;
+    }
+
+    /* ── Hairline ── */
+    .hairline {
+      width: calc(100% - 104px);
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--ink-12) 20%, var(--ink-12) 80%, transparent);
+    }
+
+    /* ── Section shell ── */
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 52px;
+    }
+
+    /* ── About ── */
+    #about { padding: 144px 0; }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      margin-bottom: 52px;
+    }
+
+    .manifesto {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(26px, 3.2vw, 46px);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      max-width: 840px;
+      margin-bottom: 72px;
+    }
+
+    .manifesto i {
+      font-style: italic;
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 400;
+      color: var(--ink-60);
+    }
+
+    .about-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 16px;
+      line-height: 1.78;
+      color: var(--ink-60);
+      font-weight: 400;
+    }
+
+    .disciplines {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .discipline-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--ink-12);
+      cursor: default;
+      transition: padding-left 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .discipline-row:first-child { border-top: 1px solid var(--ink-12); }
+
+    .discipline-row:hover { padding-left: 8px; }
+
+    .disc-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--ink-35);
+      min-width: 20px;
+    }
+
+    .disc-name {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    .disc-arrow {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      color: var(--ink-35);
+    }
+
+    .discipline-row:hover .disc-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── Work ── */
+    #work { padding: 120px 0 144px; }
+
+    .section-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 56px;
+    }
+
+    .view-all {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink-35);
+      padding-bottom: 2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .view-all:hover { color: var(--ink); border-color: var(--ink); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 3px;
+    }
+
+    .work-card {
+      position: relative;
+      overflow: hidden;
+      background: #e2e1de;
+      cursor: pointer;
+    }
+
+    .work-card:first-child {
+      grid-row: span 2;
+    }
+
+    .work-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .work-card:first-child .work-card-img { min-height: 660px; }
+    .work-card:not(:first-child) .work-card-img { min-height: 326px; }
+
+    .work-card:hover .work-card-img { transform: scale(1.04); }
+
+    .work-card-placeholder {
+      width: 100%;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .work-card:hover .work-card-placeholder { transform: scale(1.04); }
+
+    .work-card-info {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(22,22,22,0.88) 0%, rgba(22,22,22,0.1) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px 30px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .work-card:hover .work-card-info { opacity: 1; }
+
+    .work-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      transform: translateY(8px);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .work-card:hover .work-card-title { transform: translateY(0); }
+
+    .work-card-type {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      transform: translateY(6px);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1) 0.05s;
+    }
+
+    .work-card:hover .work-card-type { transform: translateY(0); }
+
+    /* ── Writing ── */
+    #writing { padding: 120px 0 144px; }
+
+    .writing-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .writing-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: baseline;
+      gap: 48px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--ink-12);
+      text-decoration: none;
+      color: inherit;
+      transition: padding-left 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .writing-item:first-child { border-top: 1px solid var(--ink-12); }
+    .writing-item:hover { padding-left: 6px; }
+
+    .writing-date {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--ink-35);
+    }
+
+    .writing-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .writing-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      white-space: nowrap;
+    }
+
+    /* ── Contact ── */
+    #contact {
+      padding: 160px 0 180px;
+      text-align: center;
+    }
+
+    .contact-heading {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(40px, 6.5vw, 84px);
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 52px;
+    }
+
+    .contact-sub {
+      font-size: 15px;
+      color: var(--ink-60);
+      line-height: 1.7;
+      margin-bottom: 52px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 17px 38px;
+      background: var(--ink);
+      color: var(--bg);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(245,244,242,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--ink-12);
+      padding: 36px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 11.5px;
+      color: var(--ink-35);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover { color: var(--ink); }
+
+    /* ── Scroll reveal ── */
+    .r {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .r.in { opacity: 1; transform: translateY(0); }
+    .r.d1 { transition-delay: 0.1s; }
+    .r.d2 { transition-delay: 0.2s; }
+    .r.d3 { transition-delay: 0.3s; }
+    .r.d4 { transition-delay: 0.4s; }
+
+    /* ── Keyframes ── */
+    @keyframes heroLogo {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeRise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scrollTrack {
+      0%   { transform: scaleY(1);   opacity: 0.6; }
+      50%  { transform: scaleY(1.2); opacity: 1; }
+      100% { transform: scaleY(1);   opacity: 0.6; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 24px 28px; }
+      .nav-links { gap: 28px; }
+      .hero { padding: 100px 28px 90px; }
+      .hero-logo { width: 72px; height: 72px; }
+      .hero-name { font-size: clamp(22px, 6vw, 40px); }
+      .hairline { width: calc(100% - 56px); }
+      .section-inner { padding: 0 28px; }
+      #about { padding: 96px 0; }
+      .about-cols { grid-template-columns: 1fr; gap: 48px; }
+      #work { padding: 80px 0 96px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card:first-child { grid-row: span 1; }
+      .work-card:first-child .work-card-img { min-height: 400px; }
+      #writing { padding: 80px 0 96px; }
+      .writing-item { grid-template-columns: 56px 1fr; gap: 24px; }
+      .writing-tag { display: none; }
+      #contact { padding: 100px 0 120px; }
+      footer { padding: 32px 28px; flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Grain overlay ── -->
+  <svg id="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+  </svg>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <a href="#" class="nav-wordmark">Cristian Victoria</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-logo-wrap">
+      <img src="brand_assets/CV_logo_single.png" alt="CV" class="hero-logo">
+    </div>
+    <h1 class="hero-name">Cristian Victoria</h1>
+    <p class="hero-tagline">Curiosity First. Everything Else Follows.</p>
+    <p class="hero-location" style="display:flex;justify-content:center;align-items:center;gap:0.55em;"><span>New York</span><span>·</span><span>2026</span></p>
+
+    <div class="hero-scroll-cue">
+      <div class="scroll-track"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="eyebrow r">About</p>
+      <h2 class="manifesto r d1">
+        I build at the intersection of <i>technology,</i><br>
+        <i>business,</i> and <i>human curiosity</i> —<br>
+        every project starts with a question.
+      </h2>
+      <div class="about-cols">
+        <p class="about-body r d2">
+          Based in New York, I bring together deep technical expertise and a
+          restless drive to understand how things work — and how to make them
+          work better. Whether I'm designing systems, shaping products, or writing
+          about ideas that matter, I'm always chasing the interesting problem
+          hiding behind the obvious one.
+        </p>
+        <div class="disciplines r d3">
+          <div class="discipline-row">
+            <span class="disc-num">01</span>
+            <span class="disc-name">My Story</span>
+            <svg class="disc-arrow" width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <!-- ── Work ── -->
+  <section id="work">
+    <div class="section-inner">
+      <div class="section-bar r">
+        <span class="eyebrow" style="margin-bottom:0">Selected Work</span>
+        <a href="work.html" class="view-all">View All</a>
+      </div>
+      <div class="work-grid r d1">
+        <div class="work-card">
+          <div class="work-card-placeholder" style="min-height:660px;background:linear-gradient(135deg,#dddcda 0%,#c8c5c0 100%);"></div>
+          <div class="work-card-info">
+            <div class="work-card-title">Project One</div>
+            <div class="work-card-type">Strategy &nbsp;·&nbsp; Product</div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-placeholder" style="min-height:326px;background:linear-gradient(135deg,#d5d3d0 0%,#bebbb7 100%);"></div>
+          <div class="work-card-info">
+            <div class="work-card-title">Project Two</div>
+            <div class="work-card-type">Engineering &nbsp;·&nbsp; Systems</div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-placeholder" style="min-height:326px;background:linear-gradient(135deg,#cccac7 0%,#b5b2ae 100%);"></div>
+          <div class="work-card-info">
+            <div class="work-card-title">Project Three</div>
+            <div class="work-card-type">Research &nbsp;·&nbsp; Design</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <!-- ── Writing ── -->
+  <section id="writing">
+    <div class="section-inner">
+      <div class="section-bar r">
+        <span class="eyebrow" style="margin-bottom:0">Writing</span>
+        <a href="writing.html" class="view-all">All Essays</a>
+      </div>
+      <div class="writing-list">
+        <a href="writing/ai-systems.html" class="writing-item r d1">
+          <span class="writing-date">Jan 2026</span>
+          <span class="writing-title">On Building Systems That Think for Themselves</span>
+          <span class="writing-tag">Technology</span>
+        </a>
+        <a href="writing/obvious-problem.html" class="writing-item r d2">
+          <span class="writing-date">Nov 2025</span>
+          <span class="writing-title">The Most Interesting Problem Is Never the Obvious One</span>
+          <span class="writing-tag">Strategy</span>
+        </a>
+        <a href="writing/curiosity.html" class="writing-item r d3">
+          <span class="writing-date">Sep 2025</span>
+          <span class="writing-title">Curiosity as a Compounding Asset</span>
+          <span class="writing-tag">Ideas</span>
+        </a>
+        <a href="writing/engineers-product.html" class="writing-item r d4">
+          <span class="writing-date">Jul 2025</span>
+          <span class="writing-title">What Engineers Get Wrong About Product</span>
+          <span class="writing-tag">Product</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="section-inner" style="text-align:center">
+      <p class="eyebrow r" style="text-align:center">Get in Touch</p>
+      <h2 class="contact-heading r d1">Let's build<br>something creative.</h2>
+      <p class="contact-sub r d2">
+        Have an interesting problem to solve? I'd love to hear about it.
+      </p>
+      <a href="contact.html" class="btn-primary r d3">
+        Start a Conversation
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M1 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <span class="footer-left">© 2026 Cristian Victoria</span>
+    <ul class="footer-nav">
+      <li><a href="https://www.linkedin.com/in/cristianvictoria/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/cristian-victoria" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0, rootMargin: '0px 0px 120px 0px' });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+    // Fallback: ensure all reveals are visible (handles screenshot/print scenarios)
+    setTimeout(() => {
+      document.querySelectorAll('.r:not(.in)').forEach((el, i) => {
+        setTimeout(() => el.classList.add('in'), i * 25);
+      });
+    }, 400);
+  </script>
+</body>
+</html>
