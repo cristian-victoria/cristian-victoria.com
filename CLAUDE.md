@@ -49,8 +49,8 @@
 ## Deployment
 - GitHub username: `cristian-victoria`
 - Custom domain: `cristianvictoria.com`
-- Hosted on GitHub Pages (main branch, repo root)
-- CNAME and .nojekyll files are already in the repo root
+- Hosted on **Vercel** (not GitHub Pages)
+- CNAME and .nojekyll files are in the repo root (legacy, can be ignored)
 
 ## Hard Rules
 - Do not add sections, features, or content not in the reference

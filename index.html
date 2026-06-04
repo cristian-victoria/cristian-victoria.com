@@ -260,7 +260,9 @@
       gap: 24px;
       padding: 18px 0;
       border-bottom: 1px solid var(--ink-12);
-      cursor: default;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
       transition: padding-left 0.3s cubic-bezier(0.16,1,0.3,1);
     }
 
@@ -605,12 +607,12 @@
 
   <!-- ── Nav ── -->
   <nav>
-    <a href="#" class="nav-wordmark">Cristian Victoria</a>
+    <a href="/" class="nav-wordmark">Cristian Victoria</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#writing">Writing</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/work/">Work</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/contact/">Contact</a></li>
     </ul>
   </nav>
 
@@ -643,17 +645,17 @@
       <div class="about-cols">
         <p class="about-body r d2">
           Based in New York, I bring together deep technical expertise and a
-          restless drive to understand how things work — and how to make them
+          restless drive to understand how things work and how to make them
           work better. Whether I'm designing systems, shaping products, or writing
           about ideas that matter, I'm always chasing the interesting problem
           hiding behind the obvious one.
         </p>
         <div class="disciplines r d3">
-          <div class="discipline-row">
+          <a href="/about/" class="discipline-row">
             <span class="disc-num">01</span>
             <span class="disc-name">My Story</span>
             <svg class="disc-arrow" width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -666,14 +668,14 @@
     <div class="section-inner">
       <div class="section-bar r">
         <span class="eyebrow" style="margin-bottom:0">Selected Work</span>
-        <a href="work.html" class="view-all">View All</a>
+        <a href="/work/" class="view-all">View All</a>
       </div>
       <div class="work-grid r d1">
         <div class="work-card">
           <div class="work-card-placeholder" style="min-height:660px;background:linear-gradient(135deg,#dddcda 0%,#c8c5c0 100%);"></div>
           <div class="work-card-info">
             <div class="work-card-title">Project One</div>
-            <div class="work-card-type">Strategy &nbsp;·&nbsp; Product</div>
+            <div class="work-card-type">Data Science &nbsp;·&nbsp; Product</div>
           </div>
         </div>
         <div class="work-card">
@@ -687,7 +689,7 @@
           <div class="work-card-placeholder" style="min-height:326px;background:linear-gradient(135deg,#cccac7 0%,#b5b2ae 100%);"></div>
           <div class="work-card-info">
             <div class="work-card-title">Project Three</div>
-            <div class="work-card-type">Research &nbsp;·&nbsp; Design</div>
+            <div class="work-card-type">Design</div>
           </div>
         </div>
       </div>
@@ -701,28 +703,28 @@
     <div class="section-inner">
       <div class="section-bar r">
         <span class="eyebrow" style="margin-bottom:0">Writing</span>
-        <a href="writing.html" class="view-all">All Essays</a>
+        <a href="/writing/" class="view-all">All Essays</a>
       </div>
       <div class="writing-list">
-        <a href="writing/ai-systems.html" class="writing-item r d1">
-          <span class="writing-date">Jan 2026</span>
-          <span class="writing-title">On Building Systems That Think for Themselves</span>
+        <a href="writing/colossus.html" class="writing-item r d1">
+          <span class="writing-date">—</span>
+          <span class="writing-title">Colossus</span>
+          <span class="writing-tag">Film-Media</span>
+        </a>
+        <a href="writing/east-of-eden.html" class="writing-item r d2">
+          <span class="writing-date">—</span>
+          <span class="writing-title">East of Eden</span>
+          <span class="writing-tag">Literature</span>
+        </a>
+        <a href="writing/plato-republic.html" class="writing-item r d3">
+          <span class="writing-date">—</span>
+          <span class="writing-title">Plato's Republic</span>
+          <span class="writing-tag">Philosophy</span>
+        </a>
+        <a href="writing/ai-space.html" class="writing-item r d4">
+          <span class="writing-date">—</span>
+          <span class="writing-title">AI &amp; Space</span>
           <span class="writing-tag">Technology</span>
-        </a>
-        <a href="writing/obvious-problem.html" class="writing-item r d2">
-          <span class="writing-date">Nov 2025</span>
-          <span class="writing-title">The Most Interesting Problem Is Never the Obvious One</span>
-          <span class="writing-tag">Strategy</span>
-        </a>
-        <a href="writing/curiosity.html" class="writing-item r d3">
-          <span class="writing-date">Sep 2025</span>
-          <span class="writing-title">Curiosity as a Compounding Asset</span>
-          <span class="writing-tag">Ideas</span>
-        </a>
-        <a href="writing/engineers-product.html" class="writing-item r d4">
-          <span class="writing-date">Jul 2025</span>
-          <span class="writing-title">What Engineers Get Wrong About Product</span>
-          <span class="writing-tag">Product</span>
         </a>
       </div>
     </div>
@@ -738,7 +740,7 @@
       <p class="contact-sub r d2">
         Have an interesting problem to solve? I'd love to hear about it.
       </p>
-      <a href="contact.html" class="btn-primary r d3">
+      <a href="/contact/" class="btn-primary r d3">
         Start a Conversation
         <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
           <path d="M1 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>

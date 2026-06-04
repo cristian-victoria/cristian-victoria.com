@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What Engineers Get Wrong About Product — Cristian Victoria</title>
+  <title>My Story — Cristian Victoria</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,11 @@
       text-decoration: none;
     }
 
-    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+    }
 
     .nav-links a {
       font-size: 11px;
@@ -90,7 +94,10 @@
     .nav-links a.active { color: var(--ink); }
     .nav-links a.active::after { width: 100%; }
 
-    main { flex: 1; padding: 148px 52px 120px; }
+    main {
+      flex: 1;
+      padding: 148px 52px 120px;
+    }
 
     .essay-wrap {
       max-width: 680px;
@@ -157,7 +164,21 @@
     }
 
     .essay-body p + p { margin-top: 28px; }
-    .essay-body strong { font-weight: 600; color: var(--ink); }
+
+    .essay-body strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .essay-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-top: 56px;
+      margin-bottom: 20px;
+    }
 
     footer {
       border-top: 1px solid var(--ink-12);
@@ -167,8 +188,17 @@
       align-items: center;
     }
 
-    .footer-left { font-size: 11.5px; color: var(--ink-35); letter-spacing: 0.06em; }
-    .footer-nav { display: flex; gap: 36px; list-style: none; }
+    .footer-left {
+      font-size: 11.5px;
+      color: var(--ink-35);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
 
     .footer-nav a {
       font-size: 10.5px;
@@ -182,7 +212,10 @@
 
     .footer-nav a:hover { color: var(--ink); }
 
-    @keyframes fadeRise { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeRise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-12px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -206,39 +239,48 @@
   </svg>
 
   <nav>
-    <a href="../index.html" class="nav-wordmark">Cristian Victoria</a>
+    <a href="/" class="nav-wordmark">Cristian Victoria</a>
     <ul class="nav-links">
-      <li><a href="../index.html#about">About</a></li>
-      <li><a href="../work.html">Work</a></li>
-      <li><a href="../writing.html" class="active">Writing</a></li>
-      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="/about/" class="active">About</a></li>
+      <li><a href="/work/">Work</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/contact/">Contact</a></li>
     </ul>
   </nav>
 
   <main>
     <div class="essay-wrap">
-      <a href="../writing.html" class="back-link">
+      <a href="/about/" class="back-link">
         <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
           <path d="M13 5H1M6 1L2 5l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        All Writing
+        About
       </a>
 
-      <span class="essay-tag">Product</span>
-      <h1 class="essay-title">What Engineers Get Wrong About Product</h1>
-      <p class="essay-meta">July 2025</p>
+      <span class="essay-tag">About</span>
+      <h1 class="essay-title">My Story</h1>
       <div class="essay-divider"></div>
 
       <div class="essay-body">
-        <p>Engineers are trained to solve the problem they're given. The better the engineer, the more thoroughly they'll solve it. Product managers are trained to question whether it's the right problem. These are fundamentally different cognitive modes, and confusing them is where most product failures begin.</p>
 
-        <p>I've seen this play out the same way at every company: an engineering team builds something exactly as specified, ships it on time, and watches it fail in the market. Then everyone wonders what went wrong. What went wrong was upstream — in the requirements, in the framing, in the assumption that the specified solution was actually the right solution.</p>
+        <h2>From Global Roots to Digital Horizons</h2>
 
-        <p>The gap isn't technical. <strong>It's a different relationship with uncertainty.</strong> Engineering rewards reducing uncertainty: you define a problem clearly, you solve it cleanly. Product is the opposite — you're often trying to make decisions before the problem is fully legible, and the act of shipping is itself a form of inquiry.</p>
+        <p>My journey has been defined by movement, adaptation, and an enduring curiosity about how the world works. Born in Puerto Rico, I was raised across the distinct cultural and technological landscapes of Mexico and Singapore. Moving to Orlando for my senior year of high school taught me to quickly find my footing in new environments — a trait that carried over into my university years. I spent my freshman year exploring new perspectives at the University of California before transferring to Florida State University, where I recently graduated with degrees in Business Management and Computer Science.</p>
 
-        <p>Engineers who become good at product don't stop being rigorous. They redirect their rigor toward the problem definition rather than the solution. They start asking uncomfortable questions before the sprint starts rather than elegant questions after it ends.</p>
+        <p>Living and studying across borders gave me more than just an international background; it gave me a systems-thinking mindset. I learned early on to look at the world as a web of interconnected cultural, operational, and technical frameworks.</p>
 
-        <p>The best product engineers I've worked with have something specific in common: they hold the spec loosely. They treat requirements as hypotheses about what users want, not contracts for what engineers should build. That shift — from contract to hypothesis — changes everything about how you work.</p>
+        <h2>Bridging Engineering and Philosophy</h2>
+
+        <p>As a full-stack engineer, I sit at the intersection of business and technology. I view coding not just as a utility, but as a form of craftsmanship. Whether architecturalizing backend data pipelines — like a recent project tracking 50 years of political language evolution — or building front-end user experiences like an AI-powered fitness application, I am driven by precision and deliberate design.</p>
+
+        <p>But my curiosity doesn't stop at the keyboard. Lately, my focus has expanded into philosophy and religious studies. I find that the deep, foundational questions asked by philosophers mirror the architectural questions we face in software: How do we build meaning? How do we structure complex systems? For me, turning curiosity into code means connecting ideas across disciplines to build systems that actually matter.</p>
+
+        <h2>The Next Chapter: Building the Future</h2>
+
+        <p>I am early in my journey as a builder, but my eyes are set on the horizon. I believe we are standing on the brink of a massive paradigm shift driven by artificial intelligence. My long-term vision is to establish an AI-focused agency that explores how intelligent agents can fundamentally transform workflows, business systems, and human productivity.</p>
+
+        <p>I don't just want to watch the future unfold — I want to deliberately design and build it, one system at a time.</p>
+
       </div>
     </div>
   </main>

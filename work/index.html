@@ -343,12 +343,12 @@
 
   <!-- ── Nav ── -->
   <nav>
-    <a href="index.html" class="nav-wordmark">Cristian Victoria</a>
+    <a href="/" class="nav-wordmark">Cristian Victoria</a>
     <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="work.html" class="active">Work</a></li>
-      <li><a href="writing.html">Writing</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/work/" class="active">Work</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/contact/">Contact</a></li>
     </ul>
   </nav>
 
@@ -369,9 +369,8 @@
       <div class="filter-wrap">
         <div class="filter-row" id="filter-row">
           <button class="filter-btn active" data-tag="all">All</button>
-          <button class="filter-btn" data-tag="Strategy">Strategy</button>
+          <button class="filter-btn" data-tag="Data Science">Data Science</button>
           <button class="filter-btn" data-tag="Engineering">Engineering</button>
-          <button class="filter-btn" data-tag="Research">Research</button>
           <button class="filter-btn" data-tag="Design">Design</button>
         </div>
       </div>
@@ -396,7 +395,7 @@
     let projects = [];
     let activeTag = 'all';
 
-    fetch('website_content/work/index.json')
+    fetch('/website_content/work/index.json')
       .then(r => r.json())
       .then(data => {
         projects = data;
@@ -425,7 +424,7 @@
       }
 
       grid.innerHTML = items.map(p => `
-        <a href="work/${p.slug}.html" class="work-card">
+        <a href="/work/${p.slug}.html" class="work-card">
           <div class="work-card-placeholder" style="background:${p.gradient}"></div>
           <div class="work-card-info">
             <div class="work-card-title">${p.title}</div>

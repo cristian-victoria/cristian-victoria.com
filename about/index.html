@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — Cristian Victoria</title>
+  <title>About — Cristian Victoria</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,6 @@
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -32,7 +31,6 @@
       flex-direction: column;
     }
 
-    /* ── Grain overlay ── */
     #grain {
       position: fixed;
       inset: 0;
@@ -42,7 +40,6 @@
       width: 100%; height: 100%;
     }
 
-    /* ── Navigation ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -97,153 +94,85 @@
     .nav-links a.active { color: var(--ink); }
     .nav-links a.active::after { width: 100%; }
 
-    /* ── Main content ── */
     main {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 140px 52px 100px;
+      padding: 148px 52px 120px;
     }
 
-    .contact-wrap {
-      width: 100%;
+    .essay-wrap {
       max-width: 680px;
+      margin: 0 auto;
       opacity: 0;
       transform: translateY(24px);
-      animation: fadeRise 0.75s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+      animation: fadeRise 0.75s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
     }
 
-    .eyebrow {
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      text-decoration: none;
+      margin-bottom: 56px;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover { color: var(--ink); }
+
+    .essay-tag {
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--ink-35);
-      margin-bottom: 32px;
+      margin-bottom: 20px;
+      display: block;
     }
 
-    .page-heading {
+    .essay-title {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: clamp(40px, 6vw, 76px);
-      letter-spacing: -0.03em;
-      line-height: 1.0;
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: -0.025em;
+      line-height: 1.08;
       color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .essay-divider {
+      height: 1px;
+      background: linear-gradient(to right, var(--ink-12) 0%, transparent 100%);
+      margin-bottom: 52px;
+    }
+
+    .essay-body {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--ink-60);
+      font-weight: 400;
+    }
+
+    .essay-body p + p { margin-top: 28px; }
+
+    .essay-body strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .essay-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-top: 56px;
       margin-bottom: 20px;
     }
 
-    .page-sub {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--ink-60);
-      margin-bottom: 64px;
-    }
-
-    /* ── Form ── */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .field label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-35);
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      background: var(--bg);
-      border: none;
-      border-bottom: 1px solid var(--ink-12);
-      padding: 14px 0;
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.25s ease;
-      resize: none;
-      appearance: none;
-      -webkit-appearance: none;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: var(--ink-35);
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-bottom-color: var(--ink);
-    }
-
-    .field textarea {
-      min-height: 120px;
-      line-height: 1.7;
-    }
-
-    .form-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 8px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 17px 38px;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(245,244,242,0.12);
-      transform: translateX(-100%);
-      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-    }
-
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary:hover { transform: translateY(-2px); }
-    .btn-primary:active { transform: translateY(0); }
-    .btn-primary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-
-    /* ── Hairline ── */
-    .hairline {
-      width: calc(100% - 104px);
-      margin: 0 auto;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--ink-12) 20%, var(--ink-12) 80%, transparent);
-    }
-
-    /* ── Footer ── */
     footer {
       border-top: 1px solid var(--ink-12);
       padding: 36px 52px;
@@ -276,7 +205,6 @@
 
     .footer-nav a:hover { color: var(--ink); }
 
-    /* ── Keyframes ── */
     @keyframes fadeRise {
       to { opacity: 1; transform: translateY(0); }
     }
@@ -286,7 +214,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Responsive ── */
     @media (max-width: 900px) {
       nav { padding: 24px 28px; }
       .nav-links { gap: 28px; }
@@ -297,7 +224,6 @@
 </head>
 <body>
 
-  <!-- ── Grain overlay ── -->
   <svg id="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <filter id="noiseFilter">
       <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
@@ -305,53 +231,53 @@
     <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
   </svg>
 
-  <!-- ── Nav ── -->
   <nav>
-    <a href="index.html" class="nav-wordmark">Cristian Victoria</a>
+    <a href="/" class="nav-wordmark">Cristian Victoria</a>
     <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="work.html">Work</a></li>
-      <li><a href="writing.html">Writing</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="/about/" class="active">About</a></li>
+      <li><a href="/work/">Work</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/contact/">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- ── Main ── -->
   <main>
-    <div class="contact-wrap">
-      <p class="eyebrow">Get in Touch</p>
-      <h1 class="page-heading">Let's talk.</h1>
-      <p class="page-sub">Fill in the form below and I'll get back to you.</p>
+    <div class="essay-wrap">
+      <a href="/" class="back-link">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M13 5H1M6 1L2 5l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Home
+      </a>
 
-      <form class="contact-form" action="#" method="post">
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required>
-        </div>
+      <span class="essay-tag">About</span>
+      <h1 class="essay-title">My Story</h1>
+      <div class="essay-divider"></div>
 
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-        </div>
+      <div class="essay-body">
 
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="Tell me what's on your mind." required></textarea>
-        </div>
+        <h2>From Global Roots to Digital Horizons</h2>
 
-        <div class="form-footer">
-          <button type="submit" class="btn-primary">
-            Send Message
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-              <path d="M1 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      </form>
+        <p>My journey has been defined by movement, adaptation, and an enduring curiosity about how the world works. Born in Puerto Rico, I was raised across the distinct cultural and technological landscapes of Mexico and Singapore. Moving to Orlando for my senior year of high school taught me to quickly find my footing in new environments — a trait that carried over into my university years. I spent my freshman year exploring new perspectives at the University of California before transferring to Florida State University, where I recently graduated with degrees in Business Management and Computer Science.</p>
+
+        <p>Living and studying across borders gave me more than just an international background; it gave me a systems-thinking mindset. I learned early on to look at the world as a web of interconnected cultural, operational, and technical frameworks.</p>
+
+        <h2>Bridging Engineering and Philosophy</h2>
+
+        <p>As a full-stack engineer, I sit at the intersection of business and technology. I view coding not just as a utility, but as a form of craftsmanship. Whether architecturalizing backend data pipelines — like a recent project tracking 50 years of political language evolution — or building front-end user experiences like an AI-powered fitness application, I am driven by precision and deliberate design.</p>
+
+        <p>But my curiosity doesn't stop at the keyboard. Lately, my focus has expanded into philosophy and religious studies. I find that the deep, foundational questions asked by philosophers mirror the architectural questions we face in software: How do we build meaning? How do we structure complex systems? For me, turning curiosity into code means connecting ideas across disciplines to build systems that actually matter.</p>
+
+        <h2>The Next Chapter: Building the Future</h2>
+
+        <p>I am early in my journey as a builder, but my eyes are set on the horizon. I believe we are standing on the brink of a massive paradigm shift driven by artificial intelligence. My long-term vision is to establish an AI-focused agency that explores how intelligent agents can fundamentally transform workflows, business systems, and human productivity.</p>
+
+        <p>I don't just want to watch the future unfold — I want to deliberately design and build it, one system at a time.</p>
+
+      </div>
     </div>
   </main>
 
-  <!-- ── Footer ── -->
   <footer>
     <span class="footer-left">© 2026 Cristian Victoria</span>
     <ul class="footer-nav">
