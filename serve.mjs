@@ -23,7 +23,7 @@ const mime = {
 
 http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
-  if (urlPath === '/') urlPath = '/index.html';
+  if (urlPath === '/' || urlPath.endsWith('/')) urlPath = urlPath + 'index.html';
   const filePath = path.join(__dirname, urlPath);
 
   fs.readFile(filePath, (err, data) => {
