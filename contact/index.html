@@ -277,6 +277,13 @@
 
     .footer-nav a:hover { color: var(--ink); }
 
+    /* ── Thank-you state ── */
+    .thankyou-block {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeRise 0.75s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
     /* ── Keyframes ── */
     @keyframes fadeRise {
       to { opacity: 1; transform: translateY(0); }
@@ -347,6 +354,12 @@
           </button>
         </div>
       </form>
+
+      <div id="thankyou" style="display:none;" class="thankyou-block">
+        <p class="eyebrow">Message Sent</p>
+        <h1 class="page-heading">Thank you.</h1>
+        <p class="page-sub">Thank you very much. I'll respond as soon as I can.</p>
+      </div>
     </div>
   </main>
 
@@ -359,5 +372,28 @@
     </ul>
   </footer>
 
+  <script>
+    document.querySelector('.contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          document.querySelector('.eyebrow').style.display = 'none';
+          document.querySelector('.page-heading').style.display = 'none';
+          document.querySelector('.page-sub').style.display = 'none';
+          form.style.display = 'none';
+          document.getElementById('thankyou').style.display = 'block';
+        }
+      } catch (_) {}
+    });
+  </script>
 </body>
 </html>
