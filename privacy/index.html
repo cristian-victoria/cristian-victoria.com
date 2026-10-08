@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ73SXQ08M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZ73SXQ08M');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — CV</title>
+  <meta name="description" content="Privacy policy for Sohana, Cristian Victoria's personal assistant app.">
+  <link rel="icon" href="/brand_assets/CV_logo_single.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F4F2;
+      --ink: #222222;
+      --ink-60: rgba(34,34,34,0.6);
+      --ink-35: rgba(34,34,34,0.35);
+      --ink-12: rgba(34,34,34,0.12);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: 'Instrument Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      width: 100%; height: 100%;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 30px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: multiply;
+      opacity: 0;
+      animation: slideDown 0.5s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    }
+
+    .nav-wordmark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 44px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 1px;
+      background: var(--ink);
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--ink); }
+    .nav-links a.active::after { width: 100%; }
+
+    main {
+      flex: 1;
+      padding: 148px 52px 120px;
+    }
+
+    .essay-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeRise 0.75s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      text-decoration: none;
+      margin-bottom: 56px;
+      transition: color 0.2s ease;
+    }
+
+    .back-link:hover { color: var(--ink); }
+
+    .essay-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .essay-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 48px);
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .essay-divider {
+      height: 1px;
+      background: linear-gradient(to right, var(--ink-12) 0%, transparent 100%);
+      margin-bottom: 52px;
+    }
+
+    .essay-body {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--ink-60);
+      font-weight: 400;
+    }
+
+    .essay-body p + p { margin-top: 28px; }
+
+    .essay-body strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .essay-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-top: 56px;
+      margin-bottom: 20px;
+    }
+
+    .essay-body a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--ink-35);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease;
+    }
+
+    .essay-body a:hover,
+    .essay-body a:focus-visible { text-decoration-color: var(--ink); }
+
+    footer {
+      border-top: 1px solid var(--ink-12);
+      padding: 36px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 11.5px;
+      color: var(--ink-35);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-35);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover { color: var(--ink); }
+
+    @keyframes fadeRise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 24px 28px; }
+      .nav-links { gap: 28px; }
+      main { padding: 120px 28px 80px; }
+      footer { padding: 32px 28px; flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <svg id="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+  </svg>
+
+  <nav>
+    <a href="/" class="nav-wordmark">Cristian Victoria</a>
+    <ul class="nav-links">
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="essay-wrap">
+      <a href="/" class="back-link">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M13 5H1M6 1L2 5l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Home
+      </a>
+
+      <span class="essay-tag">Sohana</span>
+      <h1 class="essay-title">Privacy Policy</h1>
+      <div class="essay-divider"></div>
+
+      <div class="essay-body">
+
+        <p><strong>Effective October 8, 2026.</strong> This policy covers Sohana, a personal assistant app built and used by Cristian Victoria. Sohana is not offered to the public. It connects only to Google accounts that Cristian owns and signs in to himself.</p>
+
+        <h2>What Sohana accesses</h2>
+
+        <p>When a Google account signs in, Sohana requests access to that account's Gmail (and, if added later, Google Calendar). It uses this access only to read, search, and organize that account's email and calendar when its owner asks it to. Sohana can also send or delete email, but only after the account owner approves each action.</p>
+
+        <p>Sohana also receives the signed-in account's basic profile (name and email address) so it can confirm which account is connected.</p>
+
+        <h2>How data is stored</h2>
+
+        <p>Sohana runs on its owner's own computer. Sign-in tokens and any email exports are stored in files on that computer. Sohana has no server or database of its own and does not copy email anywhere else.</p>
+
+        <h2>What Sohana never does</h2>
+
+        <p>Sohana does not sell, rent, or share Google user data with anyone. It does not use Google user data for advertising, and it does not use it to train or improve AI or machine learning models.</p>
+
+        <p>Sohana's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+        <h2>Removing access</h2>
+
+        <p>Any connected account can revoke Sohana's access at any time from <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">Google Account permissions</a>. Revoking access stops Sohana from reading that account immediately, and its locally stored sign-in token stops working.</p>
+
+        <h2>Contact</h2>
+
+        <p>Questions about this policy can be sent to <a href="mailto:cristian.victoria.perez@gmail.com">cristian.victoria.perez@gmail.com</a>.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-left">© 2026 Cristian Victoria</span>
+    <ul class="footer-nav">
+      <li><a href="https://www.linkedin.com/in/cristianvictoria/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/cristian-victoria" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
