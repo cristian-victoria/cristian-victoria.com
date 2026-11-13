@@ -49,8 +49,10 @@
 ## Deployment
 - GitHub username: `cristian-victoria`
 - Custom domain: `cristianvictoria.com`
-- Hosted on **Vercel** (not GitHub Pages)
-- CNAME and .nojekyll files are in the repo root (legacy, can be ignored)
+- Hosted on **GitHub Pages** (moved from Vercel 2026-11-13), deployed from `main`, repo root `/`. Every push to `main` goes live in about a minute, so push only what's ready.
+- `CNAME` (the custom domain) and `.nojekyll` (serve files as-is, no Jekyll) in the repo root are **required**. Don't delete them.
+- DNS is at Namecheap: 4 GitHub A records and 4 AAAA records on `@`, plus CNAME `www` → `cristian-victoria.github.io`. The SPF TXT record is for email forwarding, so leave it.
+- The repo is public. Never commit secrets, `node_modules/`, or `temporary screenshots/` (all in `.gitignore`).
 
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
