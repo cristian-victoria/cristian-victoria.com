@@ -519,6 +519,46 @@
     updateProgress();
   }
 
+  /* ---------- Menu for narrow screens: the section links in a pop-up ---------- */
+  /* Built from the page's own .nav-links, so each page keeps its own relative paths. */
+  var navLinks = $('.nav-links');
+  var navTools = $('.nav-tools');
+  if (navBar && navLinks && navTools) {
+    var menuBtn = document.createElement('button');
+    menuBtn.className = 'menu-btn';
+    menuBtn.type = 'button';
+    menuBtn.setAttribute('aria-label', 'Menu');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-controls', 'site-menu');
+    menuBtn.innerHTML = '<span></span><span></span>';
+    navTools.appendChild(menuBtn);
+
+    var menu = document.createElement('nav');
+    menu.className = 'menu mono';
+    menu.id = 'site-menu';
+    menu.setAttribute('aria-label', 'Sections');
+    menu.hidden = true;
+    $$('a', navLinks).forEach(function (a) { menu.appendChild(a.cloneNode(true)); });
+    navBar.appendChild(menu);
+
+    var setMenu = function (open) {
+      menu.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    menuBtn.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', function (e) {
+      if (!menu.hidden && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); }
+    });
+    var narrow = window.matchMedia('(max-width: 1024px)');
+    var onWidth = function () { if (!narrow.matches) setMenu(false); };
+    if (narrow.addEventListener) narrow.addEventListener('change', onWidth);
+    else if (narrow.addListener) narrow.addListener(onWidth);
+  }
+
   /* ---------- Copy email ---------- */
   $$('[data-copy]').forEach(function (b) {
     b.addEventListener('click', async function () {
@@ -545,11 +585,21 @@
     });
   });
 
-  /* ---------- Brief form → opens the visitor's email app ---------- */
+  /* ---------- Brief form → sent through Formspree ---------- */
+  /* Without JavaScript the form still posts to Formspree (its action), which shows its own thank-you page. */
   var form = $('#brief');
   if (form) {
     var status = $('#brief-status');
-    form.addEventListener('submit', function (e) {
+    var done = $('#brief-done');
+    var sendBtn = $('button[type="submit"]', form);
+    var sendLabel = $('[data-send-label]', form);
+    var sendText = sendLabel.textContent;
+    var failed = function () {
+      sendBtn.disabled = false;
+      sendLabel.textContent = sendText;
+      status.textContent = 'Couldn’t send it. Please try again, or write to ' + EMAIL + '.';
+    };
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
@@ -559,17 +609,19 @@
       var d = new FormData(form);
       var name = (d.get('name') || '').toString().trim();
       var org = (d.get('org') || '').toString().trim();
-      var subject = 'Message: ' + d.get('type') + ' — ' + (org || name);
-      var body = [
-        'Name: ' + name,
-        'Email: ' + d.get('email'),
-        'Organization: ' + (org || '—'),
-        'About: ' + d.get('type'),
-        '',
-        (d.get('message') || '').toString()
-      ].join('\n');
-      window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      status.textContent = 'Your email app should open with this message filled in. If it doesn’t, write to ' + EMAIL + '.';
+      d.set('_subject', 'Message: ' + d.get('type') + ' — ' + (org || name));
+      sendBtn.disabled = true;
+      sendLabel.textContent = 'Sending…';
+      status.textContent = '';
+      try {
+        var res = await fetch(form.action, { method: 'POST', body: d, headers: { Accept: 'application/json' } });
+        if (!res.ok) { failed(); return; }
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      } catch (err) {
+        failed();
+      }
     });
   }
 })();

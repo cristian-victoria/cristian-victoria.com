@@ -166,10 +166,47 @@ main, .footer, .nav { position: relative; z-index: 1; }
 @keyframes pulse { 0% { transform: scale(0.4); opacity: 0.7; } 100% { transform: scale(1.5); opacity: 0; } }
 .pill .short { display: none; }
 
+/* Menu for narrow screens (button and panel are added by script.js) */
+.menu-btn {
+  display: none;
+  position: relative; flex: none;
+  width: 30px; height: 30px; padding: 0;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: #fff; cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.menu-btn span {
+  position: absolute; left: 8px; right: 8px; top: calc(50% - 0.75px);
+  height: 1.5px; background: var(--ink);
+  transition: transform 0.25s var(--ease-out);
+}
+.menu-btn span:first-child { transform: translateY(-3px); }
+.menu-btn span:last-child { transform: translateY(3px); }
+.menu-btn:hover { border-color: var(--ink); }
+.menu-btn:active { transform: scale(0.94); }
+.menu-btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.menu-btn[aria-expanded="true"] { border-color: var(--signal); }
+.menu-btn[aria-expanded="true"] span:first-child { transform: rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:last-child { transform: rotate(-45deg); }
+
+.menu {
+  position: absolute; top: calc(100% + 8px); right: var(--margin);
+  width: 240px;
+  display: flex; flex-direction: column;
+  background: #fff; border: 1px solid var(--line);
+}
+.menu[hidden] { display: none; }
+.menu a { padding: 14px 16px; text-decoration: none; color: var(--graphite); border-top: 1px solid var(--line); }
+.menu a:first-child { border-top: 0; }
+.menu a:hover { color: var(--ink); background: var(--paper); }
+.menu a:active { background: var(--line); }
+.menu a:focus-visible { color: var(--ink); outline: 2px solid var(--signal); outline-offset: -2px; }
+
 @media (max-width: 1024px) {
   .nav-links { display: none; }
   .brand { grid-column: 1 / span 3; }
   .nav-tools { grid-column: 4 / -1; }
+  .menu-btn { display: inline-block; }
 }
 @media (max-width: 640px) {
   .brand { grid-column: 1 / span 2; font-size: 14px; }
@@ -177,6 +214,11 @@ main, .footer, .nav { position: relative; z-index: 1; }
   .pill { padding: 0 10px; }
   .pill .long { display: none; }
   .pill .short { display: inline; }
+  .menu { left: var(--margin); width: auto; }
+}
+@media (max-width: 400px) {
+  .pill { gap: 0; padding: 0 9px; }
+  .pill .dot { display: none; }
 }
 
 /* ---------- Hero ---------- */

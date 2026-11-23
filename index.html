@@ -216,7 +216,7 @@
           </div>
 
           <div class="c-right">
-            <form class="brief" id="brief" novalidate>
+            <form class="brief" id="brief" action="https://formspree.io/f/mkolbjwe" method="POST" novalidate>
               <h3>Send a message</h3>
               <p>Happy to talk about what AI means for your business, for government, and for everyday life.</p>
               <div class="two">
@@ -235,9 +235,14 @@
                 </div>
               </fieldset>
               <div class="field"><label class="mono" for="f-msg">Your message</label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
-              <button class="send mono" type="submit"><span>Open in my email app</span><span aria-hidden="true">→</span></button>
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+              <button class="send mono" type="submit"><span data-send-label>Send message</span><span aria-hidden="true">→</span></button>
               <p class="status-note" id="brief-status" aria-live="polite"></p>
             </form>
+            <div class="brief" id="brief-done" tabindex="-1" hidden>
+              <h3>Thank you.</h3>
+              <p>Thank you very much. I'll respond as soon as I can.</p>
+            </div>
           </div>
         </div>
       </div>
