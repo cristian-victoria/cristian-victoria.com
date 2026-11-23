@@ -866,6 +866,9 @@ fieldset.field legend { padding: 0; margin-bottom: 8px; }
   border: 0; background: var(--ink); color: var(--paper); cursor: pointer;
 }
 .send:hover { background: #000; }
+.send:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.send-alt { margin-top: 8px; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.send-alt:hover { background: #fff; }
 .status-note { margin: 12px 0 0; color: var(--graphite); font-size: 14px; min-height: 1.4em; }
 
 /* ---------- Footer ---------- */

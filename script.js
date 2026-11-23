@@ -585,7 +585,7 @@
     });
   });
 
-  /* ---------- Brief form → sent through Formspree ---------- */
+  /* ---------- Brief form → sent through Formspree, or opened in the visitor's email app ---------- */
   /* Without JavaScript the form still posts to Formspree (its action), which shows its own thank-you page. */
   var form = $('#brief');
   if (form) {
@@ -594,22 +594,46 @@
     var sendBtn = $('button[type="submit"]', form);
     var sendLabel = $('[data-send-label]', form);
     var sendText = sendLabel.textContent;
+    var mailBtn = $('[data-mailto]', form);
     var failed = function () {
       sendBtn.disabled = false;
       sendLabel.textContent = sendText;
       status.textContent = 'Couldn’t send it. Please try again, or write to ' + EMAIL + '.';
     };
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
+    /* Shared by both buttons: validate, then return the fields and the subject line (null if invalid). */
+    var readBrief = function () {
       if (!form.checkValidity()) {
         form.reportValidity();
         status.textContent = 'Please add your name, your email and a line about what you have in mind.';
-        return;
+        return null;
       }
       var d = new FormData(form);
       var name = (d.get('name') || '').toString().trim();
       var org = (d.get('org') || '').toString().trim();
-      d.set('_subject', 'Message: ' + d.get('type') + ' — ' + (org || name));
+      return { d: d, name: name, org: org, subject: 'Message: ' + d.get('type') + ' — ' + (org || name) };
+    };
+    if (mailBtn) {
+      mailBtn.addEventListener('click', function () {
+        var b = readBrief();
+        if (!b) return;
+        var body = [
+          'Name: ' + b.name,
+          'Email: ' + b.d.get('email'),
+          'Organization: ' + (b.org || '—'),
+          'About: ' + b.d.get('type'),
+          '',
+          (b.d.get('message') || '').toString()
+        ].join('\n');
+        window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(b.subject) + '&body=' + encodeURIComponent(body);
+        status.textContent = 'Your email app should open with this message filled in. If it doesn’t, write to ' + EMAIL + '.';
+      });
+    }
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var b = readBrief();
+      if (!b) return;
+      var d = b.d;
+      d.set('_subject', b.subject);
       sendBtn.disabled = true;
       sendLabel.textContent = 'Sending…';
       status.textContent = '';
