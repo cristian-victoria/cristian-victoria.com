@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ73SXQ08M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZ73SXQ08M');
+  </script>
+  <title>Tracing Ideological Drift in Political Manifestos through Temporal Text Mining — Cristian Victoria</title>
+  <meta name="description" content="A research paper by Cristian Victoria: Word2Vec embeddings and LDA topic models trace how the language of 40 U.S. party manifestos changed from 1948 to 2024.">
+  <meta name="theme-color" content="#F6F6F3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='4' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%23F6F6F3'%3ECV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('motion');
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="wrap g">
+      <a class="brand" href="../../">Cristian Victoria</a>
+      <nav class="nav-links mono" aria-label="Sections">
+        <a href="../../#projects">Projects</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#writing">Writing</a>
+        <a href="../../#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <a class="pill mono" href="../../#contact"><span class="dot" aria-hidden="true"></span><span class="long">Open to clients and fellowships</span><span class="short">Clients &amp; fellowships</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="pp-top">
+      <div class="wrap">
+        <a class="pp-back mono" href="../../#writing">← All writing</a>
+      </div>
+    </div>
+
+    <!-- ============ PAPER ============ -->
+    <article class="paper-page wrap g" aria-labelledby="paper-title">
+      <header class="paper-head">
+        <p class="paper-kicker mono">Research paper · 2025</p>
+        <h1 class="paper-title" id="paper-title">Tracing Ideological Drift in Political Manifestos through Temporal Text Mining</h1>
+        <p class="paper-meta mono">Cristian Victoria · <a href="https://github.com/cristian-victoria/ideological_drift_maps" target="_blank" rel="noopener">Code on GitHub ↗</a></p>
+      </header>
+
+      <div class="paper">
+        <h2 id="introduction"><span class="pn mono">1</span>Introduction</h2>
+        <p>Political discourse shapes democratic societies, yet the language of politics is not static, it evolves in response to shifts in social, economic, and cultural landscapes. Terms like <em>freedom</em>, <em>security</em>, and <em>justice</em> carry vastly different connotations now than they did half a century ago. A staunch example can be seen in the word ‘liberalism’. Once primarily associated with an opposition to monarchy in the early 20th century, has now become multidimensional and carries a fundamentally different meaning depending on the context used: ‘economic liberalism’ advocates for free markets with limited government intervention while ‘social liberalism’ advocates for greater government intervention to address inequality by increasing public welfare. Understanding how political language evolves over time is crucial for political scientists, historians, and policymakers whose interpretations of these words shape the rules of today for the governance of tomorrow.</p>
+        <p>Traditional approaches to analyzing political ideology rely heavily on manual content analysis or static classification frameworks that categorize parties as simply “left” or “right”. While these methods provide snapshots of political positioning, they fail to capture the dynamic nature of ideological evolution. They are also very slow and subjective and thus are ill-equipped to process the vast collection of political documents spanning decades. This paper addresses this gap by developing an automated temporal text mining framework that automatically detects and visualizes ideological drifts in political manifestos across multiple decades. The framework combines word embedding analysis for semantic drift detection and topic modeling for thematic evolution, providing both quantitative measures of linguistic change and qualitative insights into the transformation of political discourse.</p>
+        <p>I demonstrate this applicability by analyzing over 50 years of manifestos from the <em>Manifesto Corpus,</em> a database from the Manifesto Project that comprises over 1,000 manifestos from more than 50 different countries in almost 40 languages since 1945 (Lehmann et al., 2025). Unlike studies using the entire <em>Manifesto Corpus</em>, this project focuses solely on the U.S.; a country which has shown consistent two-party dynamics, thus allowing for cleaner temporal analysis. The data that I use for my investigation consists only of 40 manifestos which span from 1948 to 2024, evenly distributed between the Democratic and the Republican Party.</p>
+        <p>This investigation has broad applications across multiple domains. Political scientists can use these techniques to test hypotheses about party realignment and ideological polarization. Historians can identify inflection points where political language underwent significant transformation, correlating these with major historical events. And policymakers can use these visualizations to track the evolution of messaging and stick behind the ones that resonates the best with their constituents. The temporal text mining framework can also be used beyond political science, applicable to the analysis of semantic drift in legal documents, corporate communications, scientific literature, and any domain where language evolution matters. In the subsequent sections, I detail the methodology I employed and the algorithms I implemented in my investigation. I then present my quantitative and qualitative findings from the visualizations I built and demonstrate how political language has changed in the United States since 1948. Finally, I conclude this paper by evaluating the effectiveness of my models and the future directions my research can follow to advance the field of political analysis.</p>
+
+        <h2 id="methodology"><span class="pn mono">2</span>Methodology and Implementation</h2>
+        <p>All code was written using Python 3 and organized into modular scripts with clear function documentation and inline comments. A master orchestration script, <code>run_analysis.py</code>, was built to execute the complete pipeline sequentially. Each stage includes progress indicators and completion messages to facilitate debugging and monitoring. All random processes use fixed random seeds to ensure reproducibility. The estimated runtime for the complete pipeline is between 4 to 5 minutes, with Optical Character Recognition (OCR) representing the most intensive component. A Makefile was implemented to provide convenient automation for running the full pipeline and cleaning intermediate files.</p>
+
+        <h3 id="data-extraction"><span class="pn mono">2.1</span>Data Extraction and Combination</h3>
+        <p>From the 40 manifestos in my data set, 6 exist as scanned PDFs. They are the oldest of the manifestos from the years 1948, 1952, and 1956. This required OCR implementation to process them into scannable text. To achieve this, I combined the <code>pytesseract</code> and <code>pdf2image.convert_from_path()</code> python libraries. Two IF functions were written to account for each party, and the data was extracted and saved as a .pkl for the model for faster processing. The other 34 manifestos were available as structured CSV files and therefore already had scannable text. I implemented another script which extracted and standardized all the data into a unified dataset structure containing party affiliation, year, decade classification, source type, and full text content. This resulted in a final dataset containing a total of 888,566 words.</p>
+
+        <h3 id="preprocessing"><span class="pn mono">2.2</span>Text Preprocessing</h3>
+        <p>These raw political texts needed extensive preprocessing to remove noise while preserving ideologically meaningful content. This was performed in five sequential stages: (1) text normalization, (2) tokenization, (3) stopword removal, (4) lemmatization, and (5) short token filtering. I used the NLTK python library to perform these efficiently. For the first stage, all text was converted to lowercase and non-alphanumeric characters were removed, as well as URLS and email addresses, preserving only spaces and standard letters to ensure consistent tokenization, which followed. This next stage required the use of the <code>nltk.tokenize.word_tokenize</code> library to split documents into individual word tokens using whitespace delimiters. To these tokens I applied a comprehensive stopword filtering strategy by combining three lists: NLTK’s standard English stopwords using the <code>nltk.corpus.stopwords</code> library, political-specific stopwords including presidential and candidate names, and generic political terms that could dominate topic models, such as <em>party</em>, <em>american</em>, and more. The fourth stage, lemmatization, required the use of the <code>nltk.stem.WordNetLemmatizer</code> library to reduce inflectional variants to their base form (i.e., <em>economies</em> into <em>economy</em>). Finally, I removed tokens that were shorter than three characters, ensuring that residual noises and abbreviations with little semantic value were removed. This preprocessing pipeline reduced the dataset from 888,566 words to 514,358 words. My dataset was now ready to be analyzed and used to train my models.</p>
+
+        <h3 id="word-embeddings"><span class="pn mono">2.3</span>Word Embedding Analysis for Semantic Drift Detection</h3>
+        <p>Researchers have trained embeddings on texts from different decades and aligned them to detect meaning drift. A group of researchers from Stanford University pioneered the use of diachronic word embeddings to reveal statistical laws of semantic change, demonstrating that word meanings evolve in predictable patterns related to frequency and polysemy (Hamilton et al., 2016). Despite this advance, it focuses on general language collections rather than political manifestos specifically. Political texts present a unique challenge in that they are highly curated, densely packed with ideological signals, and may use coded language that requires domain-specific interpretation which I had to consider.</p>
+        <p>For my word embedding analysis, I used separate Word2Vec embedding models for each decade that computed drift scores for key ideological terms. Word2Vec is a word embedding technique that allows words to be represented as vectors in a continuous space, allowing for text classification to be applied (GeeksforGeeks, 2018). These models were implemented using the <code>gensim.models</code> python library and included the following parameters:</p>
+<pre><code>VECTOR_SIZE=100   # Balances interpretability with computational efficiency
+WINDOW=5          # Removes any surrounding context words
+MIN_COUNT=2       # Filters out rare words
+EPOCHS=10         # Enough to prevent overfitting</code></pre>
+        <p>Each decade’s model was trained exclusively on documents from that period, creating independent semantic spaces representing how political language was used during that era. To these, I computed drift scores by applying cosine similarity between the same term’s embedding models in adjacent time periods to measure how meanings shifted between consecutive decades (Hamilton et al., 2016). Terms with higher drift scores indicate greater semantic change. I aggregated these drift scores across all consecutive decade pairs to identify terms with the highest overall semantic change.</p>
+
+        <h3 id="topic-modeling"><span class="pn mono">2.4</span>Topic Modeling for Thematic Evolution</h3>
+        <p>Topic modeling captures how topics evolve over time by modeling the transition of topic distributions across sequential time periods (Blei &amp; Lafferty, 2006). It is a statistical language model used for uncovering hidden structures in a collection of texts (Kapadia, 2019). While word embeddings capture semantic drift at the term level, topic models allow me to reveal broader thematic patterns in political discourse. I employed topic modeling using Latent Dirichlet Allocation (LDA) to discover latent topics and track their evolution across decades. To achieve this, I first created a document-term matrix using the CountVectorizer vectorization from the <code>sklearn.feature_extraction.text</code> python library with strategic filtering parameters and the combined stopword list from preprocessing. This sparse matrix was then used to train my LDA model to extract 4 topics with the following parameters:</p>
+<pre><code>n_components=N_TOPICS,     # Equal to 4
+max_iter=50,               # Sufficient iterations for convergence
+learning_method='online',  # Faster for small datasets
+random_state=42,           # Ensures Reproducibility
+n_jobs=-1,                 # Uses all CPU cores</code></pre>
+        <p>Each discovered topic was labeled by examining its top 10 most probable words and applying rule-based heuristics to classify topics into policy domains, such as <em>National Security</em>, <em>Education,</em> and more. These extracted topics were also separated by party to identify partisan differences.</p>
+
+        <h2 id="results"><span class="pn mono">3</span>Experimental results with Historical Interpretation analysis</h2>
+        <p>Using the matplotlib and seaborn python libraries, I produced the following 6 key visualizations from my two models:</p>
+
+        <h3 id="drift-heatmap"><span class="pn mono">3.1</span>Word Embedding Model #1: Semantic Drift Heatmap</h3>
+        <figure class="fig">
+          <a href="img/drift_heatmap.png" target="_blank" rel="noopener"><img src="img/drift_heatmap.png" width="2400" height="1463" loading="lazy" alt="Heatmap of semantic drift scores for 18 key political terms across each decade transition from the 1940s to the 2020s."></a>
+          <figcaption class="mono">Fig. 1 — Semantic Drift Heatmap</figcaption>
+        </figure>
+        <p>This heatmap displays the semantic drift scores for eighteen key ideological terms across consecutive decade transitions. Each row represents a political term (<em>freedom, security, tax, etc.</em>), and each column represents a decade transition. The drift scores range in a 0 to 1 scale. In this figure, we can see that the term <em>trade</em> underwent the most dramatic semantic shift (0.43) during the 1940s-1950s, coinciding with the post-WWII era which reflected a massive shift from wartime economics to international trade frameworks. The term <em>terrorism</em> experienced consecutive substantial shifts during the 1970s and 1980s (0.37 and 0.41, respectively). This is noteworthy as it illuminates a subtle yet significant part of U.S. foreign policy discourse. Upon reading the manifestos from that era, I came to understand that during the 1970s, amid the intensification of the Cold War, the label <em>terrorism</em> was used to describe communist threats, including those associated with Castro’s Cuba. By the 1980s, however, U.S. attention had pivoted towards an entirely different geopolitical context: the Middle East. Countries such as Syria and Iran, along with organizations like the Palestinian Liberation Organization (PLO), increasingly came to be characterized as terrorist actors. Although Islamophobia in the U.S. is often framed as a post-9/11 phenomenon, this reframing suggests that it may have emerged considerably earlier. All other terms except for some were moderately low in their semantic change.</p>
+
+        <h3 id="drift-timeline"><span class="pn mono">3.2</span>Word Embedding Model #2: Semantic Drift Timeline</h3>
+        <figure class="fig">
+          <a href="img/drift_timeline.png" target="_blank" rel="noopener"><img src="img/drift_timeline.png" width="2400" height="1187" loading="lazy" alt="Line graph of semantic drift scores across decade transitions for the five most-drifting terms."></a>
+          <figcaption class="mono">Fig. 2 — Semantic Drift Timeline</figcaption>
+        </figure>
+        <p>This line graph tracks the top five most drifting terms across all decade transitions over time. The X-axis represents the decade transitions and the Y-axis the semantic drift scores. It reveals that the trajectory of semantic change is not constant. Terms like <em>education, trade,</em> and <em>equality</em> follow a similar trajectory throughout. The term <em>tax</em>, however, suffers more significant spikes, most notably in the 1970s and the 2010s. It reveals the drastically different approaches to tax policy between the two consecutive administrations in their eras (Carter-Reagan, and Bush-Obama, respectively). Interestingly enough, most terms converge to lower drifts in recent years, suggesting that political language has become more homogenous and standardized — they lack diversity in ways of speaking about them. This is true except for one, <em>equality</em>, which is less stable now than it was in the 1950s, revealing the disparity that persists when discussing what it means to be equal in America.</p>
+
+        <h3 id="term-evolution"><span class="pn mono">3.3</span>Word Embedding Model #3: Term Evolution Map</h3>
+        <figure class="fig">
+          <a href="img/term_evolution_map.png" target="_blank" rel="noopener"><img src="img/term_evolution_map.png" width="2400" height="1708" loading="lazy" alt="Two-dimensional PCA projection showing where key terms sit in semantic space in each decade."></a>
+          <figcaption class="mono">Fig. 3 — Term Evolution Map</figcaption>
+        </figure>
+        <p>Present above is a 2D Principal Component Analysis (PCA) projection showing how terms migrate through a semantic space over time. PC1, on the X-axis, refers to a direction that explains the most variance in the data while PC2, on the Y-axis, is the direction that explains the second most variance and is uncorrelated with PC1 (Slapin &amp; Proksch, 2008). PC1 has a variance of 62.3% and PC2 a variance of 8.6%, meaning that together they explain 70.9% of the total variance in the dataset. This is pretty significant and enough to provide a useful summary of my data. Each color represents a different term, and different points represent a term in a specific decade so that the distance between these points describe the amount of semantic change between them. The cluster in the right side, shared by the terms <em>equality</em> and <em>terrorism</em>, suggests they share a semantic space in contemporary discourse, meaning they may be used in similar contexts (i.e., security, global issues, etc.,). A critical observation is that there are three terms which show the 1980s as extreme outliers (<em>tax, education,</em> and <em>trade</em>), validating that this decade represented great semantic disruption and not just topic shifts; the Reagan-era language fundamentally reframed these concepts. As noted before with topics becoming homogeneous, this is supported by the fact that all terms, except for <em>tax</em>, show clustering in the most recent decades.</p>
+
+        <h3 id="topic-heatmap"><span class="pn mono">3.4</span>Topic Model #1: Topic Heatmap</h3>
+        <figure class="fig">
+          <a href="img/topic_heatmap.png" target="_blank" rel="noopener"><img src="img/topic_heatmap.png" width="2400" height="1715" loading="lazy" alt="Heatmap of the prominence of each discovered policy topic by decade."></a>
+          <figcaption class="mono">Fig. 4 — Topic Heatmap</figcaption>
+        </figure>
+        <p>The heatmap above displays the prominence of three discovered policy topics across decades highlighting thematic shifts. Each row is a discovered topic, and each column is a decade. The LDA model achieved a perplexity score of 1043.01, indicating reasonable fit for this corpus size. However, the LDA model was initialized with k-4 topics and as we can see in the heatmap, convergence analysis revealed that only 3 topics exhibited sufficient coherence. This may suggest that US political manifestos naturally cluster around three primary thematic domains rather than four, reflecting the genuine structure of political discourse.</p>
+
+        <h3 id="topic-timeline"><span class="pn mono">3.5</span>Topic Model #2: Topic Timeline</h3>
+        <figure class="fig">
+          <a href="img/topic_timeline.png" target="_blank" rel="noopener"><img src="img/topic_timeline.png" width="2400" height="1365" loading="lazy" alt="Line graph of the average prominence of the top three topics by decade."></a>
+          <figcaption class="mono">Fig. 5 — Topic Timeline</figcaption>
+        </figure>
+        <p>Above we can see a multi-line graph showing how the top three topics evolve in prominence over time. The Y-axis represents the average topic prominence, and the X-axis the decades. These results help tell a compelling three-act narrative. There is the Post-War Era where <em>Social Justice &amp; Civil Rights</em> dominated the political conversation, followed by a transition phase where <em>National Security</em> emerged, around the same time Reagan took office and modern polarization was introduced. The final act has <em>Healthcare</em> rise dramatically from the 1990s onwards. By now, all three topics share almost equally a prominence in current discourse, highlighting how political discourse has shifted from single topics taking major focal points to now a heterogeneity of topics being discussed at a time.</p>
+
+        <h3 id="party-comparison"><span class="pn mono">3.6</span>Topic Model #3: Party Topic Comparison</h3>
+        <figure class="fig">
+          <a href="img/party_topic_comparison.png" target="_blank" rel="noopener"><img src="img/party_topic_comparison.png" width="2400" height="690" loading="lazy" alt="Three line charts comparing Democratic and Republican topic prominence by decade for Social Justice &amp; Civil Rights, National Security, and Healthcare."></a>
+          <figcaption class="mono">Fig. 6 — Party Topic Comparison</figcaption>
+        </figure>
+        <p>Above we see three different subplots comparing the Democratic Party (blue) against the Republican party (orange) on the top three most prominent topics in the last 76 years: <em>Social Justice &amp; Civil Rights, National Security,</em> and <em>Healthcare</em>. Each graph has the average topic prominence on its Y-axis and the decades as its X-axis. The different graphs show how each party emphasized the three topics in different eras. For instance, the Democrats show a recent dominance when it comes to discussing <em>Social Justice &amp; Civil Rights</em> compared to the other two. On this same topic, Republicans were having the same topic dominance as the Democrats until the 1990s which saw this topic prominence plummet, possibly due to it being replaced by <em>Healthcare</em> which now dominates their discourse at 0.6 in the 2020s. Both parties show a similar topic prominence trajectory in discussing <em>National Security</em>.</p>
+
+        <h2 id="conclusion"><span class="pn mono">4</span>Conclusion</h2>
+        <p>This project demonstrated that temporal text mining techniques can detect and quantify ideological drift in political manifestos. Word2Vec embeddings captured granular semantic shifts at the term level, allowing us to track when terms like <em>terrorism</em> and <em>trade</em> changed meaning in different decades. LDA topic modeling uncovered inflection points that revealed broader thematic evolution patterns. By combining techniques on 40 U.S. political manifestos, this research uncovered major findings that advance our understanding of how political language evolves. It proves that utilizing both techniques yields richer insights rather than any single method alone. However, while this study provides valuable insights, several limitations should be acknowledged. Firstly, the scope of my analysis focused exclusively on the U.S. Democratic and Republican party platforms, limiting generalizability to other political systems, document types, countries, and more. The sample size was also limiting with just 40 manifestos spanning 76 years. A larger dataset with more documents per time period would strengthen statistical confidence. Moreover, the fact that I was analyzing per decade could also be a limiting factor in that the analysis fails to capture inflection points between decade boundaries, making it difficult to isolate major historical events. When it comes to topic modeling analysis, my LDA assumes that topics remain stable across time periods, which does not consider the possibility for changes in lexical meanings of different topics, proving to be a limitation as well. Future research directions could focus on extending the methodology by incorporating greater data analysis that includes different nations and document data types. To address changes in lexicality of topics, researchers could employ dynamic topic modeling specifically designed for diachronic analysis to allow topic distributions to evolve rather than assume static topics.</p>
+
+        <h2 id="references">References</h2>
+        <ol class="refs">
+          <li>Blei, D. M., &amp; Lafferty, J. D. (2006). Dynamic topic models. In <em>Proceedings of the 23rd International Conference on Machine Learning</em> (pp. 113–120). Association for Computing Machinery. <a href="https://doi.org/10.1145/1143844.1143859" target="_blank" rel="noopener">https://doi.org/10.1145/1143844.1143859</a></li>
+          <li>GeeksforGeeks. (2018, May 18). <em>Python | Word embedding using Word2Vec</em>. <a href="https://www.geeksforgeeks.org/python/python-word-embedding-using-word2vec/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/python/python-word-embedding-using-word2vec/</a></li>
+          <li>Hamilton, W. L., Leskovec, J., &amp; Jurafsky, D. (2016). Diachronic word embeddings reveal statistical laws of semantic change. In <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em> (pp. 1489–1501). Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/P16-1141" target="_blank" rel="noopener">https://doi.org/10.18653/v1/P16-1141</a></li>
+          <li>Kapadia, S. (2019, April 14). <em>End-to-end topic modeling in Python: Latent Dirichlet allocation (LDA)</em>. Towards Data Science. <a href="https://towardsdatascience.com/end-to-end-topic-modeling-in-python-latent-dirichlet-allocation-lda-35ce4ed6b3e0/" target="_blank" rel="noopener">https://towardsdatascience.com/end-to-end-topic-modeling-in-python-latent-dirichlet-allocation-lda-35ce4ed6b3e0/</a></li>
+          <li>Lehmann, P., Franzmann, S., Al-Gaddooa, D., Burst, T., Ivanusch, C., Lewandowski, J., Regel, S., Riethmüller, F., &amp; Zehnter, L. (2025). <em>Manifesto corpus</em> (Version 2025-1) [Data set]. WZB Berlin Social Science Center; Institute for Democracy Research (IfDem).</li>
+          <li>Slapin, J. B., &amp; Proksch, S.-O. (2008). A scaling model for estimating time-series party positions from texts. <em>American Journal of Political Science, 52</em>(3), 705–722. <a href="https://doi.org/10.1111/j.1540-5907.2008.00338.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1540-5907.2008.00338.x</a></li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ============ BACK ============ -->
+    <nav class="page-end" aria-label="Back to all writing">
+      <div class="wrap">
+        <a href="../../#writing"><span class="mono">Back</span><span class="pe-title"><span aria-hidden="true">←</span> All writing</span></a>
+      </div>
+    </nav>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="f-top g">
+        <div><span class="mono">Contact</span><a href="mailto:cristian.victoria.perez@gmail.com">Email</a><a href="https://www.linkedin.com/in/cristianvictoria/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/cristian-victoria" target="_blank" rel="noopener">GitHub</a><a href="https://substack.com/@cjvp" target="_blank" rel="noopener">Substack</a></div>
+        <div><span class="mono">Sections</span><a href="../../#projects">Projects</a><a href="../../#experience">Experience</a><a href="../../#writing">Writing</a><a href="../../#contact">Contact</a></div>
+        <div><span class="mono">Based in</span>New York City<br><span class="clock" data-clock>--:--:-- ET</span></div>
+        <div><span class="mono">Now</span>Building Victoria LLC; open to AI governance fellowships</div>
+      </div>
+      <p class="foot-name fitname" aria-label="Cristian Victoria"><span class="line"><span class="w">Cristian</span> <span class="w">Victoria</span></span></p>
+      <div class="f-bottom mono">
+        <span>© 2026 Cristian Victoria</span>
+        <span>Set in Geist &amp; Geist Mono</span>
+        <a href="#top" style="color:inherit;text-decoration:none">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>

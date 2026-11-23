@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ73SXQ08M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZ73SXQ08M');
+  </script>
+  <title>Ideological Drift Maps — Cristian Victoria</title>
+  <meta name="description" content="Ideological Drift Maps, a project by Cristian Victoria: Seventy-six years of the same words, meaning different things.">
+  <meta name="theme-color" content="#F6F6F3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='4' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%23F6F6F3'%3ECV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('motion');
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="wrap g">
+      <a class="brand" href="../../">Cristian Victoria</a>
+      <nav class="nav-links mono" aria-label="Sections">
+        <a href="../../#projects">Projects</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#writing">Writing</a>
+        <a href="../../#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <a class="pill mono" href="../../#contact"><span class="dot" aria-hidden="true"></span><span class="long">Open to clients and fellowships</span><span class="short">Clients &amp; fellowships</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="pp-top">
+      <div class="wrap">
+        <a class="pp-back mono" href="../../#projects">← All projects</a>
+        <span class="pp-note mono">The screen is built into the page, not a picture.</span>
+      </div>
+    </div>
+
+      <!-- Case 02 — full width -->
+      <article class="case case--full wrap g" id="case-2" aria-labelledby="c2-title">
+        <div class="case-meta g mono">
+          <span>Case 02</span><span>NLP research</span><span>Oct — Dec 2025</span><span>Word2Vec · LDA · Gensim</span><span><a href="https://github.com/cristian-victoria/ideological_drift_maps" target="_blank" rel="noopener">Code on GitHub ↗</a></span>
+        </div>
+        <div class="case-text">
+          <h3 id="c2-title">Seventy-six years of the same words, meaning different things.</h3>
+          <div class="body">
+            <p>I trained word embeddings decade by decade on 40 U.S. party manifestos (1948–2024) and measured how far 18 political terms drifted, then used topic models to see which themes rose and fell.</p>
+            <p>Trade moved most after the war. Terrorism was redefined twice, first around the Cold War, then around the Middle East. Since then, political language has grown more uniform. I presented the findings to more than 20 faculty and students at a department seminar.</p>
+          </div>
+          <div class="results">
+            <div class="result"><span class="num" data-count="76">76</span><span class="cap mono">years of party manifestos</span></div>
+            <div class="result"><span class="num" data-count="40">40</span><span class="cap mono">manifestos, 1948–2024</span></div>
+            <div class="result"><span class="num" data-count="18">18</span><span class="cap mono">political terms tracked</span></div>
+            <div class="result"><span class="num" data-count="0.43" data-decimals="2">0.43</span><span class="cap mono">largest drift: trade, 1940s → 1950s</span></div>
+          </div>
+        </div>
+        <figure class="case-stage">
+          <div class="stage">
+            <div class="win" data-screen="drift">
+              <div class="win-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">drift-explorer — US manifestos 1948–2024</span><span class="win-meta mono">Word2Vec · aligned</span></div>
+              <div class="drift">
+                <div class="drift-top">
+                  <span class="mono lbl">Semantic drift by term and decade (0–1)</span>
+                  <span class="legend mono"><span>0.43 score</span><span>▲ spike</span><span>○ 1980s outlier</span><span>△ less stable than 1950s</span></span>
+                </div>
+                <div class="heat">
+                  <span></span>
+                  <span class="hd mono" data-i="0"><span class="c">19</span>50s</span><span class="hd mono" data-i="1"><span class="c">19</span>60s</span><span class="hd mono" data-i="2"><span class="c">19</span>70s</span><span class="hd mono" data-i="3"><span class="c">19</span>80s</span><span class="hd mono" data-i="4"><span class="c">19</span>90s</span><span class="hd mono" data-i="5"><span class="c">20</span>00s</span><span class="hd mono" data-i="6"><span class="c">20</span>10s</span><span class="hd mono" data-i="7"><span class="c">20</span>20s</span>
+
+                  <span class="rl">trade</span>
+                  <span class="cell v" style="--a:.82">0.43</span><span class="cell"></span><span class="cell"></span><span class="cell mk">○</span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+
+                  <span class="rl">terrorism</span>
+                  <span class="cell"></span><span class="cell"></span><span class="cell v" style="--a:.7">0.37</span><span class="cell v" style="--a:.78">0.41</span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+
+                  <span class="rl">tax</span>
+                  <span class="cell"></span><span class="cell"></span><span class="cell mk">▲</span><span class="cell mk">○</span><span class="cell"></span><span class="cell"></span><span class="cell mk">▲</span><span class="cell"></span>
+
+                  <span class="rl">education</span>
+                  <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell mk">○</span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
+
+                  <span class="rl">equality</span>
+                  <span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell mk">△</span>
+
+                  <span class="more mono">+ 13 more terms in the full model · blank cells: no headline shift in the report</span>
+                  <span class="col-sel" aria-hidden="true"></span>
+                </div>
+                <div class="slider">
+                  <div class="s-track">
+                    <div class="s-fill"></div>
+                    <div class="s-thumb" role="slider" tabindex="0" aria-label="Decade" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" aria-valuetext="1950s"></div>
+                  </div>
+                </div>
+                <div class="readout" aria-live="polite">
+                  <span class="mono ro-dec">1950s</span>
+                  <p class="ro-text"><b>trade</b> drifts 0.43, the largest shift in the study, as wartime economics gave way to international trade frameworks.</p>
+                </div>
+                <div class="topics"><span class="mono lbl">Topics found (LDA)</span><span class="chip">Social justice &amp; civil rights</span><span class="chip">National security</span><span class="chip">Healthcare</span></div>
+              </div>
+            </div>
+            <figcaption class="stage-cap mono"><span>Fig. 02 — Drag the slider through the decades</span><button class="replay mono" type="button">↻ Replay</button></figcaption>
+          </div>
+        </figure>
+      </article>
+
+    <!-- ============ BACK ============ -->
+    <nav class="page-end" aria-label="Back to all projects">
+      <div class="wrap">
+        <a href="../../#projects"><span class="mono">Back</span><span class="pe-title"><span aria-hidden="true">←</span> All projects</span></a>
+      </div>
+    </nav>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="f-top g">
+        <div><span class="mono">Contact</span><a href="mailto:cristian.victoria.perez@gmail.com">Email</a><a href="https://www.linkedin.com/in/cristianvictoria/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/cristian-victoria" target="_blank" rel="noopener">GitHub</a><a href="https://substack.com/@cjvp" target="_blank" rel="noopener">Substack</a></div>
+        <div><span class="mono">Sections</span><a href="../../#projects">Projects</a><a href="../../#experience">Experience</a><a href="../../#writing">Writing</a><a href="../../#contact">Contact</a></div>
+        <div><span class="mono">Based in</span>New York City<br><span class="clock" data-clock>--:--:-- ET</span></div>
+        <div><span class="mono">Now</span>Building Victoria LLC; open to AI governance fellowships</div>
+      </div>
+      <p class="foot-name fitname" aria-label="Cristian Victoria"><span class="line"><span class="w">Cristian</span> <span class="w">Victoria</span></span></p>
+      <div class="f-bottom mono">
+        <span>© 2026 Cristian Victoria</span>
+        <span>Set in Geist &amp; Geist Mono</span>
+        <a href="#top" style="color:inherit;text-decoration:none">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>

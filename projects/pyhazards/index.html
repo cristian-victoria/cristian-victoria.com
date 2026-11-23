@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ73SXQ08M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZ73SXQ08M');
+  </script>
+  <title>PyHazards models — Cristian Victoria</title>
+  <meta name="description" content="PyHazards models, a project by Cristian Victoria: Two published models, rebuilt to run inside a lab's library.">
+  <meta name="theme-color" content="#F6F6F3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='4' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%23F6F6F3'%3ECV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('motion');
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="wrap g">
+      <a class="brand" href="../../">Cristian Victoria</a>
+      <nav class="nav-links mono" aria-label="Sections">
+        <a href="../../#projects">Projects</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#writing">Writing</a>
+        <a href="../../#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <a class="pill mono" href="../../#contact"><span class="dot" aria-hidden="true"></span><span class="long">Open to clients and fellowships</span><span class="short">Clients &amp; fellowships</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="pp-top">
+      <div class="wrap">
+        <a class="pp-back mono" href="../../#projects">← All projects</a>
+        <span class="pp-note mono">The screen is built into the page, not a picture.</span>
+      </div>
+    </div>
+
+      <!-- Case 03 — flipped -->
+      <article class="case case--flip wrap g" id="case-3" aria-labelledby="c3-title">
+        <div class="case-meta g mono">
+          <span>Case 03</span><span>ML engineering</span><span>Jan — May 2026</span><span>PyTorch</span><span>Dept. of Scientific Computing, FSU</span>
+        </div>
+        <figure class="case-stage">
+          <div class="stage">
+            <div class="win" data-screen="harness">
+              <div class="win-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">pyhazards — model registry</span><span class="win-meta mono">PyTorch</span></div>
+              <div class="ide">
+                <div class="tree" aria-hidden="true">
+                  <div>pyhazards/</div>
+                  <div class="i1">models/</div>
+                  <div class="i2">__init__.py</div>
+                  <div class="i2 hl">dlwp.py</div>
+                  <div class="i2 hl">wavecastnet.py</div>
+                  <div>tests/</div>
+                </div>
+                <div class="ide-main">
+                  <div class="ide-head"><span class="mono lbl">Registry · 2 reproduced models</span><button class="run-btn" type="button">▶ Run checks</button></div>
+                  <div class="models">
+                    <div class="model" data-model="wavecastnet"><b>WaveCastNet</b><span>Earthquake wavefield forecasting</span><span class="st mono"><i></i><span class="wait">3 checks</span><span class="ok">3 / 3 passed</span></span></div>
+                    <div class="model" data-model="dlwp"><b>DLWP</b><span>Weather prediction on a cubed sphere</span><span class="st mono"><i></i><span class="wait">3 checks</span><span class="ok">3 / 3 passed</span></span></div>
+                  </div>
+                  <div class="term">
+                    <ol class="lines">
+                      <li class="cmd">▸ checking every registered model</li>
+                      <li data-model="wavecastnet"><span class="n">wavecastnet · registered</span><span class="lead"></span><span class="r">PASS</span></li>
+                      <li data-model="wavecastnet"><span class="n">wavecastnet · forward-pass shapes</span><span class="lead"></span><span class="r">PASS</span></li>
+                      <li data-model="wavecastnet" data-last="1"><span class="n">wavecastnet · gradient flow</span><span class="lead"></span><span class="r">PASS</span></li>
+                      <li data-model="dlwp"><span class="n">dlwp · registered</span><span class="lead"></span><span class="r">PASS</span></li>
+                      <li data-model="dlwp"><span class="n">dlwp · forward-pass shapes</span><span class="lead"></span><span class="r">PASS</span></li>
+                      <li data-model="dlwp" data-last="1"><span class="n">dlwp · gradient flow</span><span class="lead"></span><span class="r">PASS</span></li>
+                      <li class="sum">6 passed · 0 failed</li>
+                    </ol>
+                    <div class="prog"><i></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="stage-cap mono"><span>Fig. 03 — The test harness, run on both models</span><button class="replay mono" type="button">↻ Replay</button></figcaption>
+          </div>
+        </figure>
+        <div class="case-text">
+          <h3 id="c3-title">Two published models, rebuilt to run inside a lab's library.</h3>
+          <p>As a research assistant in FSU's Department of Scientific Computing, I reproduced two deep-learning architectures from recent papers in the lab's PyTorch framework, PyHazards: WaveCastNet, which forecasts earthquake wavefields, and DLWP, which predicts weather on a cubed sphere.</p>
+          <p>Each is registered so other researchers can use it in their own experiments. A test harness I built checks every model in the registry before it reaches an experiment, and I documented the paper-to-library workflow for whoever adds the next one.</p>
+          <div class="results">
+            <div class="result"><span class="num" data-count="2">2</span><span class="cap mono">architectures reproduced from papers</span></div>
+            <div class="result"><span class="num" data-count="3">3</span><span class="cap mono">checks on every model: registration, shapes, gradients</span></div>
+            <div class="result"><span class="num" data-count="3">3</span><span class="cap mono">bugs caught before any experiment</span></div>
+          </div>
+        </div>
+      </article>
+
+    <!-- ============ BACK ============ -->
+    <nav class="page-end" aria-label="Back to all projects">
+      <div class="wrap">
+        <a href="../../#projects"><span class="mono">Back</span><span class="pe-title"><span aria-hidden="true">←</span> All projects</span></a>
+      </div>
+    </nav>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="f-top g">
+        <div><span class="mono">Contact</span><a href="mailto:cristian.victoria.perez@gmail.com">Email</a><a href="https://www.linkedin.com/in/cristianvictoria/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/cristian-victoria" target="_blank" rel="noopener">GitHub</a><a href="https://substack.com/@cjvp" target="_blank" rel="noopener">Substack</a></div>
+        <div><span class="mono">Sections</span><a href="../../#projects">Projects</a><a href="../../#experience">Experience</a><a href="../../#writing">Writing</a><a href="../../#contact">Contact</a></div>
+        <div><span class="mono">Based in</span>New York City<br><span class="clock" data-clock>--:--:-- ET</span></div>
+        <div><span class="mono">Now</span>Building Victoria LLC; open to AI governance fellowships</div>
+      </div>
+      <p class="foot-name fitname" aria-label="Cristian Victoria"><span class="line"><span class="w">Cristian</span> <span class="w">Victoria</span></span></p>
+      <div class="f-bottom mono">
+        <span>© 2026 Cristian Victoria</span>
+        <span>Set in Geist &amp; Geist Mono</span>
+        <a href="#top" style="color:inherit;text-decoration:none">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>

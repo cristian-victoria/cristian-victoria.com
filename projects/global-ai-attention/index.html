@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ73SXQ08M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VZ73SXQ08M');
+  </script>
+  <title>Global AI Attention — Cristian Victoria</title>
+  <meta name="description" content="Global AI Attention, a project by Cristian Victoria: Whose AI harms get written down?">
+  <meta name="theme-color" content="#F6F6F3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='4' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%23F6F6F3'%3ECV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('motion');
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="wrap g">
+      <a class="brand" href="../../">Cristian Victoria</a>
+      <nav class="nav-links mono" aria-label="Sections">
+        <a href="../../#projects">Projects</a>
+        <a href="../../#experience">Experience</a>
+        <a href="../../#writing">Writing</a>
+        <a href="../../#contact">Contact</a>
+      </nav>
+      <div class="nav-tools">
+        <a class="pill mono" href="../../#contact"><span class="dot" aria-hidden="true"></span><span class="long">Open to clients and fellowships</span><span class="short">Clients &amp; fellowships</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <div class="pp-top">
+      <div class="wrap">
+        <a class="pp-back mono" href="../../#projects">← All projects</a>
+        <span class="pp-note mono">The screen is built into the page, not a picture.</span>
+      </div>
+    </div>
+
+      <!-- Case 01 — split -->
+      <article class="case case--split wrap g" id="case-1" aria-labelledby="c1-title">
+        <div class="case-meta g mono">
+          <span>Case 01</span><span>Governance research</span><span>Oct 2026 — now</span><span>Python · count regression</span><span>Pre-registered pilot</span>
+        </div>
+        <div class="case-text">
+          <h3 id="c1-title">Whose AI harms get written down?</h3>
+          <p>A pre-registered audit of the public record of AI harm. I wrote down the question, the data and the test before opening any data, then checked where the incidents in two databases actually happened: 136 coded incidents from the AI Incident Database and 1,944 located records from the AIAAIC Repository.</p>
+          <p>The record leans hard toward the US. China, the other frontier-AI country, barely appears in it. I directed AI research agents for the analysis and had a separate reviewer critique it before anything was written up. Next: multilingual news coverage.</p>
+          <div class="results">
+            <div class="result"><span class="num" data-count="66" data-suffix="%">66%</span><span class="cap mono">of located AIID incidents are in the US</span></div>
+            <div class="result"><span class="num" data-count="55" data-suffix="%">55%</span><span class="cap mono">of located AIAAIC incidents</span></div>
+            <div class="result"><span class="num" data-count="4" data-suffix="%">4%</span><span class="cap mono">of the world's population lives there</span></div>
+            <div class="result"><span class="num" data-count="0.28" data-decimals="2">0.28</span><span class="cap mono">China incidents per 100M people, below the rest of the world</span></div>
+          </div>
+        </div>
+        <figure class="case-stage">
+          <div class="stage">
+            <div class="win" data-screen="audit">
+              <div class="win-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">incident-audit — pilot</span><span class="win-meta mono">2026-10-30</span></div>
+              <div class="aud">
+                <aside class="aud-side">
+                  <div>
+                    <span class="mono lbl">Sources</span>
+                    <ul class="side-list">
+                      <li><span class="sw"></span>AIID · snapshot 10-26</li>
+                      <li><span class="sw t3"></span>AIAAIC · export 10-30</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span class="mono lbl">Country tiers</span>
+                    <ul class="side-list">
+                      <li><span class="sw"></span>T1 Frontier developers</li>
+                      <li><span class="sw t2"></span>T2 Chip supply chain</li>
+                      <li><span class="sw t3"></span>T3 Upstream inputs</li>
+                      <li><span class="sw t4"></span>T4 Everyone else</li>
+                    </ul>
+                  </div>
+                </aside>
+                <div class="aud-main">
+                  <div class="aud-head">
+                    <div class="tabs" role="tablist" aria-label="Dataset">
+                      <button class="tab is-on" type="button" role="tab" aria-selected="true" data-src="aiid">AIID<span>136</span></button>
+                      <button class="tab" type="button" role="tab" aria-selected="false" data-src="aiaaic">AIAAIC<span>1,944</span></button>
+                    </div>
+                    <span class="mono lbl">Share of located incidents</span>
+                  </div>
+                  <div class="bars">
+                    <div class="bar-row"><span class="bar-label">United States</span><div class="bar-track"><div class="bar-fill" style="--v:66"></div><div class="pop-mark"></div></div><span class="bar-val">66%</span></div>
+                    <div class="bar-row"><span class="bar-label">Everywhere else</span><div class="bar-track"><div class="bar-fill alt" style="--v:34"></div></div><span class="bar-val">34%</span></div>
+                    <div class="pop-note mono"><i></i>US share of world population · 4%</div>
+                  </div>
+                  <div class="aud-foot">
+                    <div class="kv"><span class="mono" data-kl="0">Incidents analysed</span><b data-kv="0">136</b></div>
+                    <div class="kv"><span class="mono" data-kl="1">Report links</span><b data-kv="1">1,177</b></div>
+                    <div class="kv"><span class="mono" data-kl="2">Model · exploratory</span><b data-kv="2">IRR 1.43 [0.76, 2.69]</b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="stage-cap mono"><span>Fig. 01 — Pilot results, AIID vs AIAAIC</span><button class="replay mono" type="button">↻ Replay</button></figcaption>
+          </div>
+        </figure>
+      </article>
+
+    <!-- ============ BACK ============ -->
+    <nav class="page-end" aria-label="Back to all projects">
+      <div class="wrap">
+        <a href="../../#projects"><span class="mono">Back</span><span class="pe-title"><span aria-hidden="true">←</span> All projects</span></a>
+      </div>
+    </nav>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="f-top g">
+        <div><span class="mono">Contact</span><a href="mailto:cristian.victoria.perez@gmail.com">Email</a><a href="https://www.linkedin.com/in/cristianvictoria/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/cristian-victoria" target="_blank" rel="noopener">GitHub</a><a href="https://substack.com/@cjvp" target="_blank" rel="noopener">Substack</a></div>
+        <div><span class="mono">Sections</span><a href="../../#projects">Projects</a><a href="../../#experience">Experience</a><a href="../../#writing">Writing</a><a href="../../#contact">Contact</a></div>
+        <div><span class="mono">Based in</span>New York City<br><span class="clock" data-clock>--:--:-- ET</span></div>
+        <div><span class="mono">Now</span>Building Victoria LLC; open to AI governance fellowships</div>
+      </div>
+      <p class="foot-name fitname" aria-label="Cristian Victoria"><span class="line"><span class="w">Cristian</span> <span class="w">Victoria</span></span></p>
+      <div class="f-bottom mono">
+        <span>© 2026 Cristian Victoria</span>
+        <span>Set in Geist &amp; Geist Mono</span>
+        <a href="#top" style="color:inherit;text-decoration:none">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>
